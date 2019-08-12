@@ -4,7 +4,25 @@ This project aim to fill the missing offline cache listing function for npm
 
 # Installation
 
-``"npm install --global npm-cache-list"``
+## Global: 
+
+This will install the package into npm's global path.
+
+- ``"npm install --global npm-cache-list"``
+
+## Local:
+
+In case installing global is not possible due to admin rights, you can install is as a dev depencency to any project.
+
+- ``"npm install npm-cache-list --save-dev"``
+
+To continue, you need to add ``"local_folder_path/node_modules/.bin"`` to your ``"PATH"`` environment, or add the path to your command to run it.
+
+NOTE: if you forget installing it as a dev dependency, you will get ``"Cannot find module 'cacache'"`` error.
+
+## Use ``"git clone"``
+
+In this case, you can either install the package with npm to some other directory as explained above, or just use ``"npm install"`` to get dependencies and ``"npm start [parameters]"`` to run the program
 
 # Usage
 
