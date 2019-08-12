@@ -1,0 +1,28 @@
+{
+  "name": "npm-cache-list",
+  "version": "1.0.0",
+  "description": "fills the missing offline cache listing function for npm",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/npm-cache-list.js"
+  },
+  "bin": {
+    "npm-cache-list": "./bin/npm-cache-list.js"
+  },
+  "author": "Yılmaz DURMAZ",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yilmazdurmaz/npm-cache-list"
+  },
+  "keywords": [
+    "npm",
+    "cache",
+    "offline",
+    "list",
+    "search"
+  ],
+  "dependencies": {
+    "cacache": "^12.0.2"
+  }
+}
