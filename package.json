@@ -1,6 +1,6 @@
 {
   "name": "npm-cache-list",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "fills the missing offline cache listing function for npm",
   "main": "index.js",
   "scripts": {

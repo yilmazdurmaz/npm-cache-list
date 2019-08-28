@@ -7,8 +7,8 @@ const cacache = require('cacache');
 const path = require('path');
 const child_process = require("child_process");
 
-const npm_cache = child_process.execSync("npm config get cache").toString().trim();
-console.log("Cache is at '" + npm_cache + "'");
+// const npm_cache = child_process.execSync("npm config get cache").toString().trim();
+// console.log("Cache is at '" + npm_cache + "'");
 
 const usage = '\n\tnpm-cache-list      (show this list)' +
               '\n\tnpm-cache-list help (show this list)' +
