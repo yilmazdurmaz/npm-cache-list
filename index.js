@@ -58,7 +58,6 @@ function list(searchterms) {
   npmconfig().then(npm_cache => {
     console.log("\nCache Location is:", npm_cache);
     const cache = path.join(npm_cache, '_cacache');
-    console.log(cache)
     let prefix = cache;
     if (prefix.indexOf(process.env.HOME) === 0) {
       prefix = '~' + prefix.substr(process.env.HOME.length);

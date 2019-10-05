@@ -33,7 +33,7 @@ In this case, you can either install the package with npm to some other director
 
 # Versions
 
-- v1.2.x: Fixed broken cache location importing ``npm`` itself
+- v1.2.x: Fixed broken cache location, importing ``npm`` itself
 - v1.1.x: Temporary fix about ``child_process`` (commented out 2 lines)
 - v1.0.x: Initial release and typos
 
