@@ -5,17 +5,29 @@
 
 const cacache = require('cacache');
 const path = require('path');
-const child_process = require("child_process");
+//const child_process = require("child_process"); //I still dont know why this gave error on some user
+const npm = require('npm');
 
 // const npm_cache = child_process.execSync("npm config get cache").toString().trim();
 // console.log("Cache is at '" + npm_cache + "'");
 
-const usage = '\n\tnpm-cache-list      (show this list)' +
-              '\n\tnpm-cache-list help (show this list)' +
-              '\n\tnpm-cache-list all  (show all versioned packages - takes long to complete)' +
-              '\n\tnpm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")';
+const usage = '' +
+  '\n\tnpm-cache-list      (show this list)' +
+  '\n\tnpm-cache-list help (show this list)' +
+  '\n\tnpm-cache-list all  (show all versioned packages - takes long to complete)' +
+  '\n\tnpm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")';
 
 exports = module.exports = cache;
+
+function npmconfig() {
+  return new Promise(resolve =>
+    npm.load({
+      some: 'config'
+    }, function (er, conf) {
+      if (er) console.log(er);
+      if (!er) resolve(conf.config.get("cache"));
+    }));
+}
 
 function cache(args) {
   const cmd = args.shift();
@@ -33,6 +45,8 @@ function cache(args) {
     case 'help':
     default:
       console.log('Usage: ' + cache.usage);
+      npmconfig().then(npm_cache => console.log("\nCache Location is:", npm_cache))
+        .catch(err => console.log("Error on getting cache location", err.message));
   }
 }
 
@@ -41,46 +55,52 @@ cache.usage = usage;
 cache.list = list;
 
 function list(searchterms) {
-  const cache = path.join(npm_cache, '_cacache');
-  let prefix = cache;
-  if (prefix.indexOf(process.env.HOME) === 0) {
-    prefix = '~' + prefix.substr(process.env.HOME.length);
-  }
-  return cacache.ls(cache).then((files) => {
-    var allpackages = [];
-    for (var file in files) {
-      const id = files[file].metadata.id;
-      if (id !== undefined) {
-        let name = id.replace(/@/g, " ").trim().split(" ");
-        let at = id[0] === "@" ? "@" : " ";
-        allpackages.push({
-          "package": name[0],
-          "version": name[1],
-          "scoped": at
+  npmconfig().then(npm_cache => {
+    console.log("\nCache Location is:", npm_cache);
+    const cache = path.join(npm_cache, '_cacache');
+    console.log(cache)
+    let prefix = cache;
+    if (prefix.indexOf(process.env.HOME) === 0) {
+      prefix = '~' + prefix.substr(process.env.HOME.length);
+    }
+    return cacache.ls(cache).then((files) => {
+      var allpackages = [];
+      for (var file in files) {
+        if (files[file].metadata !== undefined) {
+          const id = files[file].metadata.id;
+          if (id !== undefined) {
+            let name = id.replace(/@/g, " ").trim().split(" ");
+            let at = id[0] === "@" ? "@" : " ";
+            allpackages.push({
+              "package": name[0],
+              "version": name[1],
+              "scoped": at
+            });
+          }
+        }
+      }
+      allpackages.sort((a, b) => {
+        if (a.version < b.version) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }).sort((a, b) => {
+        if (a.package.toLowerCase() > b.package.toLowerCase()) {
+          return 1;
+        } else {
+          return -1;
+        }
+      });
+      if (searchterms.length > 0) {
+        allpackages = allpackages.filter(function (onepackage) {
+          return onepackage.package.toLowerCase().includes(searchterms[0].toLowerCase());
         });
       }
-    }
-    allpackages.sort((a, b) => {
-      if (a.version < b.version) {
-        return 1;
-      } else {
-        return -1;
-      }
-    }).sort((a, b) => {
-      if (a.package.toLowerCase() > b.package.toLowerCase()) {
-        return 1;
-      } else {
-        return -1;
+      for (var index in allpackages) {
+        var onepackage = allpackages[index];
+        console.log(onepackage.scoped + onepackage.package + "@" + onepackage.version);
       }
     });
-    if (searchterms.length > 0) {
-      allpackages = allpackages.filter(function (onepackage) {
-        return onepackage.package.toLowerCase().includes(searchterms[0].toLowerCase());
-      });
-    }
-    for (var index in allpackages) {
-      var onepackage = allpackages[index];
-      console.log(onepackage.scoped + onepackage.package + "@" + onepackage.version);
-    }
-  });
+  }).catch(err => console.log("Error happened", err.message));
 }

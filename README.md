@@ -33,6 +33,7 @@ In this case, you can either install the package with npm to some other director
 
 # Versions
 
+- v1.2.x: Fixed broken cache location importing ``npm`` itself
 - v1.1.x: Temporary fix about ``child_process`` (commented out 2 lines)
 - v1.0.x: Initial release and typos
 
@@ -50,11 +51,11 @@ Then, I decided to make it a global installing package so anyone that has a need
 
 # Contribution
 
-The package depends only on ``"cacache"`` external package.
+The package depends only on ``"cacache"`` external package, and ``npm`` itself.
 
 Just clone/fork the repository.
 
-Run ``"npm install"`` to get ``"cacache"``.
+Run ``"npm install"`` to get ``"cacache"`` and ``"npm"``.
 
 Then start coding, fixing, and even make the pavement to your own next npm package.
 
