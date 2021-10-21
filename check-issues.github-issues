@@ -1,0 +1,12 @@
+[
+  {
+    "kind": 2,
+    "language": "github-issues",
+    "value": "repo:yilmazdurmaz/npm-cache-list is:open"
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "**Query Syntax**\r\n\r\nThis extension supports to search for issues and pull requests using GitHub search queries (https://help.github.com/en/github/searching-for-information-on-github/searching-issues-and-pull-requests). In addition, variables can be defined and OR-queries can be used. Approximation of the grammer:\r\n\r\n````\r\n    doc ::= query | or | def\r\n    query ::= <GH_QUERY>\r\n    or ::= query \"OR\" query | or\r\n    def ::= var \"=\" query\r\n    var ::= \"$\" [_a-zA-Z] [_a-zA-Z0-9]*\r\n````\r\n\r\nNote that new line characters always terminate an expression.\r\n\r\n**Samples**\r\n\r\nA few sample queries from the vscode-project, paste each into a separate code cell\r\n\r\nDefine variables for vscode and the current milestone (May 2020):\r\n\r\n$vscode=repo:microsoft/vscode \r\n$milestone=milestone:\"May 2020\"\r\nAll current bugs I have created that are closed but not yet verified (using above variables):\r\n\r\n``$vscode $milestone is:closed author:@me -assignee:@me label:bug -label:verified``\r\n\r\nAll issues that affect performance (startup, freezing, leakage):\r\n\r\n```\r\n    $vscode assignee:@me is:open label:freeze-slow-crash-leak\r\n    $vscode assignee:@me is:open label:perf\r\n    $vscode assignee:@me is:open label:perf-startup\r\n```"
+  }
+]

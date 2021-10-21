@@ -1,0 +1,26 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "let check an issue",
+  "steps": [
+    {
+      "file": "index.js",
+      "description": "show usage message if no parameter or if \"help\"",
+      "line": 14
+    },
+    {
+      "file": "index.js",
+      "description": "load npm configuration",
+      "line": 22
+    },
+    {
+      "file": "index.js",
+      "description": "check program arguments and choose the action",
+      "line": 32
+    },
+    {
+      "file": "index.js",
+      "description": "this is the main function to retrieve search results",
+      "line": 57
+    }
+  ]
+}
