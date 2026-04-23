@@ -1,15 +1,6 @@
 # npm-cache-list
 
-offline & partial name search in caches for npm
-
-## About
-
-In the past, this project simply aimed to fill the missing offline cache listing function for npm.
-Nowadays, npm has a working list functionality along with the use of custom cache folder.
-
-But its output is overwhelming and still misses partial name search which was part of this project from the beginning.
-Update 1.5.1 brings the use of a custom npm cache folder.
-
+This project aims to fill the missing offline cache listing function for npm
 
 # Installation
 
@@ -40,21 +31,15 @@ In this case, you can either install the package with npm to some other director
 - ``"npm-cache-list all  (show all versioned packages - takes long to complete)"``
 - ``"npm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")"``
 
-## Optional
+## Options
 
 - ``"--cache <path>      (custom/old npm cache folder)"``
 
 # Versions
 
-- v1.5.x: Added the use of custom cache folder with ``cache``
 - v1.2.x: Fixed broken cache location, importing ``npm`` itself
 - v1.1.x: Temporary fix about ``child_process`` (commented out 2 lines)
 - v1.0.x: Initial release and typos
-
-## Planned/Thought changes
-
-npm v8.0.0 has removed the programmatic use of itself.
-To accomodate this, next version needs to revert back to ``child_process`` without breaking users
 
 # Development Story
 

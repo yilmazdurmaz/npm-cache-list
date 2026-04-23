@@ -16,10 +16,17 @@ const usage = '' +
   '\n\tnpm-cache-list help (show this list)' +
   '\n\tnpm-cache-list all  (show all versioned packages - takes long to complete)' +
   '\n\tnpm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")';
+  '\n\n\tOptional:' +
+  '\n\t--cache <path>      (custom/old npm cache folder)';
 
 exports = module.exports = cache;
 
+let custom_cache = null;
+
 function npmconfig() {
+  if (custom_cache) {
+    return Promise.resolve(custom_cache);
+  }
   return new Promise(resolve =>
     npm.load({
       some: 'config'
@@ -30,6 +37,12 @@ function npmconfig() {
 }
 
 function cache(args) {
+  let cache_index = args.indexOf('--cache');
+  if (cache_index > -1) {
+    custom_cache = args[cache_index + 1];
+    args.splice(cache_index, 2);
+  }
+
   const cmd = args.shift();
   let result;
   switch (cmd) {
