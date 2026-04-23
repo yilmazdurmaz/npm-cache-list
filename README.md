@@ -8,7 +8,7 @@ In the past, this project simply aimed to fill the missing offline cache listing
 Nowadays, npm has a working list functionality along with the use of custom cache folder.
 
 But its output is overwhelming and still misses partial name search which was part of this project from the beginning.
-Update 1.5.1 brings the use of a custom npm cache folder.
+Update 1.5.x brings the use of a custom npm cache folder.
 
 
 # Installation

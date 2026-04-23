@@ -1,6 +1,6 @@
 {
   "name": "npm-cache-list",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "offline & partial name search in caches for npm",
   "main": "index.js",
   "scripts": {
