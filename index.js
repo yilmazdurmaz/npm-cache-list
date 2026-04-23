@@ -69,7 +69,6 @@ cache.list = list;
 
 function list(searchterms) {
   npmconfig().then(npm_cache => {
-    console.log("\nCache Location is:", npm_cache);
     const cache = path.join(npm_cache, '_cacache');
     let prefix = cache;
     if (prefix.indexOf(process.env.HOME) === 0) {
@@ -113,9 +112,9 @@ function list(searchterms) {
         var onepackage = allpackages[index];
         console.log(onepackage.scoped + onepackage.package + "@" + onepackage.version);
       }
+      console.log("\nCache Location used:", npm_cache); // if the list is long
     });
   }).catch(err => console.log("Error happened", err.message));
   
-  console.log("\nCache Location used:", npm_cache); // if the list is long
 
 }
