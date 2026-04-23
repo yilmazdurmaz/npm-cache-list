@@ -15,7 +15,7 @@ const usage = '' +
   '\n\tnpm-cache-list      (show this list)' +
   '\n\tnpm-cache-list help (show this list)' +
   '\n\tnpm-cache-list all  (show all versioned packages - takes long to complete)' +
-  '\n\tnpm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")';
+  '\n\tnpm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")' +
   '\n\n\tOptional:' +
   '\n\t--cache <path>      (custom/old npm cache folder)';
 
