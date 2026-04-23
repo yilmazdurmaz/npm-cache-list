@@ -40,13 +40,13 @@ In this case, you can either install the package with npm to some other director
 - ``"npm-cache-list all  (show all versioned packages - takes long to complete)"``
 - ``"npm-cache-list list <search terms> (search the cache - terms are combined with "or", not "and")"``
 
-## Optional
+ Optional
 
 - ``"--cache <path>      (custom/old npm cache folder)"``
 
 # Versions
 
-- v1.5.x: Added the use of custom cache folder with ``cache``
+- v1.5.x: Added the use of custom cache folder with ``--cache``
 - v1.2.x: Fixed broken cache location, importing ``npm`` itself
 - v1.1.x: Temporary fix about ``child_process`` (commented out 2 lines)
 - v1.0.x: Initial release and typos

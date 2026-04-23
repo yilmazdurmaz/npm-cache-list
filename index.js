@@ -115,4 +115,7 @@ function list(searchterms) {
       }
     });
   }).catch(err => console.log("Error happened", err.message));
+  
+  console.log("\nCache Location used:", npm_cache); // if the list is long
+
 }
